@@ -6,9 +6,16 @@ namespace CorsProxy
         {
             var builder = WebApplication.CreateBuilder(args);
 
-            // Add services to the container.
-            builder.Services.AddAuthorization();
-
+            // Configurando o CORS para permitir qualquer origem, método e cabeçalho
+            builder.Services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
 
             var app = builder.Build();
 
@@ -16,12 +23,25 @@ namespace CorsProxy
 
             app.UseHttpsRedirection();
 
-            app.UseAuthorization();
+            app.UseCors();
 
             var summaries = new[]
             {
                 "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
             };
+
+            app.MapGet("/",async (HttpContext httpContext) =>
+            {
+                // Obtém a URL de destino como um parâmetro de query chamado 'url'
+                var targetUrl = httpContext.Request.Query["url"].FirstOrDefault();
+                //cria um objeto anônimo com uma propriedade vazia
+                var response = new
+                {
+                    url = targetUrl
+                };
+
+                return response;
+            });
 
             app.MapGet("/weatherforecast", (HttpContext httpContext) =>
             {
