@@ -30,7 +30,7 @@ namespace CorsProxy
                     "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
                 };
 
-            app.MapGet("/", async (HttpContext httpContext) =>
+            app.Map("/", async (HttpContext httpContext) =>
             {
                 var startTime = System.Diagnostics.Stopwatch.StartNew();
                 // Obtém a URL de destino como um parâmetro de query chamado 'url'
