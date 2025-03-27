@@ -1,4 +1,5 @@
 @CorsProxy_HostAddress = http://localhost:5207
+@xcToken = 
 
 GET {{CorsProxy_HostAddress}}/weatherforecast/
 Accept: application/json
@@ -6,12 +7,12 @@ Accept: application/json
 ###
 
 GET {{CorsProxy_HostAddress}}/?url=https://eh-tudo-n8n.aiyfgd.easypanel.host/webhook/iptv-backend/v1/listar-clientes
-xc-token: h6yyDMtovOHxiIn64sV4Ub0t9FDinF3bzzeHna6L
+xc-token: {{xcToken}}
 ###
 
 GET {{CorsProxy_HostAddress}}/?url=https://eh-tudo-n8n.aiyfgd.easypanel.host/webhook/8f083433-d324-41d0-9f81-3997e0704daa
-xc-token: h6yyDMtovOHxiIn64sV4Ub0t9FDinF3bzzeHna6L
+xc-token: {{xcToken}}
 
 ###
 GET {{CorsProxy_HostAddress}}/?url=https://eh-tudo-nocodb.aiyfgd.easypanel.host/api/v2/tables/mkdo3202f4rv75a/records
-xc-token: h6yyDMtovOHxiIn64sV4Ub0t9FDinF3bzzeHna6L
+xc-token: {{xcToken}}
